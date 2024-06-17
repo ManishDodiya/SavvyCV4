@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/white_dialog_bg"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/_15sdp">
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center_horizontal"
+        android:paddingVertical="@dimen/_10sdp"
+        android:text="@string/privacy_statement"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/_12ssp" />
+
+    <View
+        android:id="@+id/viewPSLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/txtTitle"
+        android:background="#4CA0D1" />
+
+    <ScrollView
+        android:id="@+id/scvPsContain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnDpsOk"
+        android:layout_below="@+id/viewPSLine"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/_7sdp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPrivacyPolicyDialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginVertical="@dimen/_7sdp"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="start"
+                android:autoLink="web"
+                android:text="@string/lorem_ipsum"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnDpsOk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/dilog"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/ok"
+        android:paddingVertical="@dimen/_7sdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp" />
+
+</RelativeLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="settingVM"
+            type="com.savvytech.savvylevelfour.viewmodels.SettingViewModel" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motionLayout"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_23sdp"
+        app:layoutDescription="@xml/switch_button">
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/viewFSButtonBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/capsult_radius"
+            app:altSrc="@drawable/capsul_radius_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/imgFSThumb"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:src="@drawable/switch_on_new"
+            app:altSrc="@drawable/switch_on_new"
+            app:layout_constraintBottom_toBottomOf="@+id/crdFSButtonBg"
+            app:layout_constraintStart_toStartOf="@+id/crdFSButtonBg"
+            app:layout_constraintTop_toTopOf="@+id/crdFSButtonBg" />
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

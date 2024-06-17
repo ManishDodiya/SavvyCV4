@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        app:constraintSetEnd="@+id/startSwitchAnim"
+        app:constraintSetStart="@+id/endSwitchAnim"
+        app:duration="200" />
+
+    <ConstraintSet android:id="@+id/startSwitchAnim">
+        <Constraint
+            android:id="@+id/viewFSButtonBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                app:attributeName="crossfade"
+                app:customFloatValue="0" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/imgFSThumb"
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:src="@drawable/switch_on_new"
+            app:layout_constraintBottom_toBottomOf="@+id/viewFSButtonBg"
+            app:layout_constraintEnd_toEndOf="@+id/viewFSButtonBg"
+            app:layout_constraintTop_toTopOf="@+id/viewFSButtonBg">
+            <CustomAttribute
+                app:attributeName="crossfade"
+                app:customFloatValue="0" />
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/endSwitchAnim">
+        <Constraint
+            android:id="@+id/viewFSButtonBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                app:attributeName="crossfade"
+                app:customFloatValue="1" />
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/imgFSThumb"
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_marginStart="@dimen/_2sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/viewFSButtonBg"
+            app:layout_constraintStart_toStartOf="@+id/viewFSButtonBg"
+            app:layout_constraintTop_toTopOf="@+id/viewFSButtonBg">
+            <CustomAttribute
+                app:attributeName="crossfade"
+                app:customFloatValue="1" />
+        </Constraint>
+    </ConstraintSet>
+</MotionScene>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/fragSplash">
+
+    <fragment
+        android:id="@+id/fragSplash"
+        android:name="com.savvytech.savvylevelfour.ui.fragments.SplashFragment"
+        android:label="@string/splashScreen"
+        tools:layout="@layout/fragment_splash">
+        <!--        <action-->
+        <!--            android:id="@+id/splashToSearchingDevice"-->
+        <!--            app:destination="@id/fragSearchingDevice"-->
+        <!--            app:enterAnim="@anim/slide_in_right"-->
+        <!--            app:exitAnim="@anim/center_to_left"-->
+        <!--            app:popUpTo="@id/fragSplash"-->
+        <!--            app:popUpToInclusive="true" />-->
+        <action
+            android:id="@+id/splashToHome"
+            app:destination="@id/fragHome" />
+        <action
+            android:id="@+id/splashToSetting"
+            app:destination="@id/fragSetting" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragHome"
+        android:name="com.savvytech.savvylevelfour.ui.fragments.HomeFragment"
+        android:label="@string/homeFrag"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/homeToSetting"
+            app:destination="@id/fragSetting" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragSetting"
+        android:name="com.savvytech.savvylevelfour.ui.fragments.SettingsFragment"
+        android:label="@string/settingsFrag"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/settingToSplash"
+            app:destination="@id/fragSplash"
+            app:popUpTo="@id/settingToSplash"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/settingToHome"
+            app:destination="@id/fragHome" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragAboutUs"
+        android:name="com.savvytech.savvylevelfour.ui.fragments.AboutUsFragment"
+        android:label="@string/about_usFrag"
+        tools:layout="@layout/fragment_aboutus" />
+</navigation>

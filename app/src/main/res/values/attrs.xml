@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomControl">
+        <attr name="drawable_image" format="reference"/>
+        <attr name="on_image" format="reference"/>
+        <attr name="off_image" format="reference"/>
+        <attr name="gauge_type" format="boolean">
+            <flag name="left" value="0"/>
+            <flag name="right" value="1"/>
+        </attr>
+        <attr name="zoom" format="integer">
+            <flag name="normal" value="0"/>
+            <flag name="zoom" value="1"/>
+        </attr>
+        <attr name="secondary_visible" format="boolean"> </attr>
+        <attr name="secondary_units" format="integer">
+            <flag name="mm" value="0"/>
+            <flag name="inch" value="1"/>
+        </attr>
+        <attr name="secondary_span" format="integer"> </attr>
+    </declare-styleable>
+
+    <bool name="isTablet">false</bool>
+</resources>

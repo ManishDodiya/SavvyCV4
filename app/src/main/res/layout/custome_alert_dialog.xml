@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/white_dialog_bg"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/_15sdp">
+
+    <TextView
+        android:id="@+id/txtview_customalert_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center_horizontal"
+        android:paddingVertical="@dimen/_10sdp"
+        android:text="@string/needPermission"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/_12ssp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#4CA0D1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtview_customalert_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center_vertical"
+        android:text="@string/permissionDesc"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12ssp" />
+
+    <Button
+        android:id="@+id/txtCADSetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:background="@drawable/dilog"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:text="@string/gotoSettings"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp" />
+
+</LinearLayout>

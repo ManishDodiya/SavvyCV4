@@ -1,0 +1,6 @@
+<br>
+<big>Check:</big><br>
+&bullet Is device powered?<br>
+&bullet Are you within range of device?<br>
+&bullet Does your battery have enough charge?<br>
+&bullet Is there another smart device connected?<br>

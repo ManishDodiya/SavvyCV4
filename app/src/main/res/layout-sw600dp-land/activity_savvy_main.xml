@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="savvyMainVM"
+            type="com.savvytech.savvylevelfour.viewmodels.SavvyMainActivityViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cvParent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.SavvyMainActivity">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/navContainer"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            app:defaultNavHost="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:navGraph="@navigation/nav_graph" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/conAsBottomView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+<!--            <include-->
+<!--                android:id="@+id/ivManuBack"-->
+<!--                layout="@layout/land_bg"-->
+<!--                android:layout_width="@dimen/_45sdp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivManuBack"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:rotation="180"
+                android:scaleType="fitXY"
+                android:src="@drawable/bottommenu_land_tab"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivManuBack"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/lnrAboutUs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:gravity="center"
+                android:onClick="@{(v)->savvyMainVM.goToAboutUs()}"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/_5sdp"
+                app:layout_constraintEnd_toEndOf="@+id/ivManuBack"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivAboutUs"
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:src="@drawable/ic_about_us"
+                    app:changeTintColor="@{savvyMainVM.aboutUsImage}" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:text="@string/about_us"
+                    android:textColor="@{savvyMainVM.aboutUsText}"
+                    android:textSize="@dimen/_9sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnrSetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="@dimen/_30sdp"
+                android:gravity="center"
+                android:onClick="@{(v)->savvyMainVM.goToSetting()}"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/_5sdp"
+                app:layout_constraintEnd_toEndOf="@+id/ivManuBack"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivSetting"
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:src="@drawable/ic_setting"
+                    app:changeTintColor="@{savvyMainVM.settingImage}" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:text="@string/settings"
+                    android:textColor="@{savvyMainVM.settingText}"
+                    android:textSize="@dimen/_9sdp" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/conCircu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v)->savvyMainVM.goToHome()}"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/ivManuBack"
+                app:layout_constraintStart_toEndOf="@+id/ivManuBack"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivHome"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:src="@drawable/menu_home_8968"
+                    app:changeTintColor="@{savvyMainVM.homeImage}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivHomeIcon"
+                    android:layout_width="@dimen/_32sdp"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_alignStart="@+id/ivHome"
+                    android:src="@drawable/ic_only_home"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivHome"
+                    app:layout_constraintEnd_toEndOf="@+id/ivHome"
+                    app:layout_constraintStart_toStartOf="@+id/ivHome"
+                    app:layout_constraintTop_toTopOf="@+id/ivHome"
+                    app:tint="@color/white" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tvHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:onClick="@{(v)->savvyMainVM.goToHome()}"
+                android:text="@string/home"
+                android:textColor="@{savvyMainVM.homeText}"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/conCircu"
+                app:layout_constraintEnd_toStartOf="@+id/conCircu"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/conCircu"  />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

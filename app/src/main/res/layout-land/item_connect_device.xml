@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_70sdp"
+    android:layout_marginTop="@dimen/_4sdp"
+    android:background="@drawable/connected_device_bg"
+    android:gravity="center_vertical"
+    android:paddingHorizontal="@dimen/_10sdp">
+
+    <RelativeLayout
+        android:id="@+id/relDeviceNameItemConnectDevice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_toStartOf="@+id/relImageItemConnectDevice">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDeviceNameItemConnectDevice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/_12ssp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDeviceStrength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_below="@+id/tvDeviceNameItemConnectDevice"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/_9ssp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relImageItemConnectDevice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/relDeviceNameItemConnectDevice"
+        android:layout_alignBottom="@+id/relDeviceNameItemConnectDevice"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/_10sdp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivDeviceStatusItemConnectDevice"
+            android:layout_width="@dimen/_17sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_selected_device" />
+    </RelativeLayout>
+</RelativeLayout>

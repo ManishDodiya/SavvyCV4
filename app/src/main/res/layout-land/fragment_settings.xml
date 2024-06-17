@@ -1,0 +1,853 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <import type="com.savvytech.savvylevelfour.R" />
+
+        <variable
+            name="settingVM"
+            type="com.savvytech.savvylevelfour.viewmodels.SettingViewModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/linMainSettings"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/sky_blue_transparent"
+        android:orientation="vertical"
+        android:tag="phone_landscape">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:id="@+id/viewBg"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/header_shadow"
+                    android:visibility="visible" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/relHeaderHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginStart="@dimen/_75sdp"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivBatteryIcon"
+                        android:layout_width="@dimen/_12sdp"
+                        android:layout_height="@dimen/_11sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_3sdp"
+                        android:src="@drawable/ic_battery"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/txtFSBatteryStatus"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txtFSBatteryStatus" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvDummy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivBatteryIcon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtFSBatteryStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="BATT: 0V"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11ssp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tvDummy"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivFHMainLogo"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_55sdp"
+                        android:src="@drawable/savvy_header_logo"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivBluetoothStrength"
+                        android:layout_width="@dimen/_17sdp"
+                        android:layout_height="@dimen/_17sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:src="@drawable/bluetooth_medium"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/viewFh"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/blue_3d4"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/relHeaderHome"
+                app:layout_constraintStart_toStartOf="@+id/relHeaderHome"
+                app:layout_constraintTop_toBottomOf="@+id/relHeaderHome" />
+
+            <ScrollView
+                android:id="@+id/svSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_80sdp"
+                android:fillViewport="true"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/linZeroCalibrationSettings"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/rect_blue_corner_radius"
+                            android:gravity="center"
+                            android:onClick="@{(v)->settingVM.clickOnZeroScale(v)}"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="@dimen/_15sdp"
+                            android:paddingVertical="@dimen/_7sdp">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivZeroCalibrationSettings"
+                                android:layout_width="@dimen/_22sdp"
+                                android:layout_height="@dimen/_22sdp"
+                                android:src="@drawable/zero_calibration"
+                                app:tint="@color/white" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:text="@string/zero_scale"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14ssp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@string/carvan_span"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/_12ssp" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/linMeasurementUnit"
+                            android:layout_alignBottom="@+id/linMeasurementUnit"
+                            android:layout_alignParentStart="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvMeasurementUnitTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/span_units"
+                                android:textColor="@color/text_gray"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:onClick="@{(v)->settingVM.clickOnMeassure(v)}"
+                                android:src="@drawable/ic_info_settings" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linMeasurementUnit"
+                            android:layout_width="@dimen/_120sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/ic_measurement_bg"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvUnitInch"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@{settingVM.tvUnitInch ? ContextCompat.getDrawable(context,R.drawable.ic_selected_measurement) : null}"
+                                android:fontFamily="@font/poppins_medium"
+                                android:gravity="center"
+                                android:onClick="@{(v)->settingVM.clickOnInch()}"
+                                android:text="@string/inch"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvUnitMM"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@{settingVM.tvUnitMM ? ContextCompat.getDrawable(context,R.drawable.ic_selected_measurement) : null}"
+                                android:fontFamily="@font/poppins_medium"
+                                android:gravity="center"
+                                android:onClick="@{(v)->settingVM.clickOnMM()}"
+                                android:text="@string/mm"
+                                android:textColor="@{settingVM.tvUnitMM ? ContextCompat.getColor(context,R.color.white) : ContextCompat.getColor(context,R.color.black)}"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/linLeftToRightWheel"
+                            android:layout_alignBottom="@+id/linLeftToRightWheel"
+                            android:layout_alignParentStart="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvLeftToRightWheelTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/wheel_to_wheel"
+                                android:textColor="@color/text_gray"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:onClick="@{(v)->settingVM.clickOnLeftRightWheet(v)}"
+                                android:src="@drawable/ic_info_settings" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linLeftToRightWheel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/ic_et_bg_settings"
+                            android:gravity="center_vertical|end"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/etWheelToWheelSpan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:background="@null"
+                                android:digits="0123456789"
+                                android:fontFamily="@font/poppins_medium"
+                                android:gravity="end"
+                                android:textAlignment="textEnd"
+                                android:imeOptions="actionDone"
+                                android:inputType="numberDecimal"
+                                android:maxLength="5"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignTop="@+id/linFrontToRearWheel"
+                            android:layout_alignBottom="@+id/linFrontToRearWheel"
+                            android:layout_alignParentStart="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvFrontToRearWheelTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/wheel_to_jockey_wheel"
+                                android:textColor="@color/text_gray"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:onClick="@{(v)->settingVM.clickOnWheel(v)}"
+                                android:src="@drawable/ic_info_settings" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linFrontToRearWheel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/ic_et_bg_settings"
+                            android:gravity="center_vertical|end"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/etWheelToJockeyWheelSpan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:background="@null"
+                                android:digits="0123456789"
+                                android:fontFamily="@font/poppins_medium"
+                                android:gravity="end"
+                                android:imeOptions="actionDone"
+                                android:inputType="numberDecimal"
+                                android:maxLength="5"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10ssp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@string/block_type"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <include
+                            android:id="@+id/inSwitch"
+                            layout="@layout/include_switch_button"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_23sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:onClick="@{(v)->settingVM.clickOnBlockType(v)}"
+                            app:settingVM="@{settingVM}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtFSBlockTypeStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_toStartOf="@+id/inSwitch"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@{settingVM.blockTypeText}"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/_12ssp" />
+                    </RelativeLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/lnrBlockTypeOption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="@{settingVM.listOfBlockType}">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_15sdp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/oziblock_n_chock"
+                                android:textColor="@color/text_gray"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <RadioButton
+                                android:id="@+id/rbOziBlock"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:button="@drawable/custome_rb_button"
+                                android:checked="@{settingVM.manageRadioButton == 0 ? true : false}"
+                                android:onClick="@{(v)->settingVM.onCheckedChangeListener(v, 0)}" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_15sdp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@string/lynx_chock"
+                                android:textColor="@color/text_gray"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <RadioButton
+                                android:id="@+id/rbLynxBlock"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:button="@drawable/custome_rb_button"
+                                android:checked="@{settingVM.manageRadioButton == 1 ? true : false}"
+                                android:onClick="@{(v)->settingVM.onCheckedChangeListener(v, 1)}" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_15sdp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@font/poppins_regular"
+                                android:text="@{settingVM.customLabelText}"
+                                android:textColor="@color/text_gray"
+                                android:textSize="@dimen/_10ssp" />
+
+                            <RadioButton
+                                android:id="@+id/rbCustomBlockType"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:button="@drawable/custome_rb_button"
+                                android:checked="@{settingVM.manageRadioButton == 2 ? true : false}"
+                                android:onClick="@{(v)->settingVM.onCheckedChangeListener(v, 2)}" />
+
+                            <LinearLayout
+                                android:id="@+id/linCustomBlockType"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:layout_toStartOf="@+id/rbCustomBlockType"
+                                android:background="@drawable/ic_et_bg_settings"
+                                android:gravity="center_vertical|end"
+                                android:orientation="horizontal">
+
+                                <androidx.appcompat.widget.AppCompatEditText
+                                    android:id="@+id/etBlockTypeCustom"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:background="@null"
+                                    android:digits="0123456789"
+                                    android:enabled="@{settingVM.linCustomBlockType}"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:gravity="end"
+                                    android:imeOptions="actionDone"
+                                    android:inputType="numberDecimal"
+                                    android:maxLength="5"
+                                    android:paddingVertical="@dimen/_4sdp"
+                                    android:textColor="@{settingVM.editTextColor}"
+                                    android:textSize="@dimen/_10ssp" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@string/options"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/_12ssp" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relTiltHeightSettings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="@string/enable_tilt_height"
+                            android:textColor="@color/text_gray"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <include
+                            android:id="@+id/inSwitchTillHeight"
+                            layout="@layout/include_switch_button"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_23sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:onClick="@{(v)->settingVM.clickOnTillHeight(v)}"
+                            app:settingVM="@{settingVM}" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relBatterySettings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="@string/enable_battery"
+                            android:textColor="@color/text_gray"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <include
+                            android:id="@+id/inSwitchBattery"
+                            layout="@layout/include_switch_button"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_23sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:onClick="@{(v)->settingVM.clickOnBatteryButton(v)}"
+                            app:settingVM="@{settingVM}" />
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@string/orientation"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/_12ssp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtFsPortrait"
+                            android:layout_width="0sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@{settingVM.manageScreenOptions == settingVM.portrait ? ContextCompat.getDrawable(context,R.drawable.rect_blue_corner_radius) : ContextCompat.getDrawable(context,R.drawable.rect_light_blue_corner_radius)}"
+                            android:fontFamily="@font/poppins_medium"
+                            android:gravity="center"
+                            android:onClick="@{(v)->settingVM.onChangeOrientation(v, settingVM.portrait)}"
+                            android:paddingVertical="@dimen/_7sdp"
+                            android:text="@string/portrait"
+                            android:textColor="@{settingVM.manageScreenOptions == settingVM.portrait ? ContextCompat.getColor(context,R.color.white) : ContextCompat.getColor(context,R.color.black)}"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtFsLscapeL"
+                            android:layout_width="0sp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_7sdp"
+                            android:layout_weight="1"
+                            android:background="@{settingVM.manageScreenOptions == settingVM.landscapeLeft ? ContextCompat.getDrawable(context,R.drawable.rect_blue_corner_radius) : ContextCompat.getDrawable(context,R.drawable.rect_light_blue_corner_radius)}"
+                            android:fontFamily="@font/poppins_medium"
+                            android:gravity="center"
+                            android:onClick="@{(v)->settingVM.onChangeOrientation(v, settingVM.landscapeLeft)}"
+                            android:paddingVertical="@dimen/_7sdp"
+                            android:text="@string/lScapeL"
+                            android:textColor="@{settingVM.manageScreenOptions == settingVM.landscapeLeft ? ContextCompat.getColor(context,R.color.white) : ContextCompat.getColor(context,R.color.black)}"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtFsLscapeR"
+                            android:layout_width="0sp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@{settingVM.manageScreenOptions == settingVM.landscapeRight ? ContextCompat.getDrawable(context,R.drawable.rect_blue_corner_radius) : ContextCompat.getDrawable(context,R.drawable.rect_light_blue_corner_radius)}"
+                            android:fontFamily="@font/poppins_medium"
+                            android:gravity="center"
+                            android:onClick="@{(v)->settingVM.onChangeOrientation(v, settingVM.landscapeRight)}"
+                            android:paddingVertical="@dimen/_7sdp"
+                            android:text="@string/lScapeR"
+                            android:textColor="@{settingVM.manageScreenOptions == settingVM.landscapeRight ? ContextCompat.getColor(context,R.color.white) : ContextCompat.getColor(context,R.color.black)}"
+                            android:textSize="@dimen/_10ssp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:onClick="@{(v) -> settingVM.onClickShowTutorial(v)}"
+                            android:text="@string/show_tutorial"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/_12ssp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@string/connected_device"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/_12ssp" />
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        app:cardCornerRadius="@dimen/_8sdp"
+                        app:cardUseCompatPadding="true">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:id="@+id/relDeviceNameItemConnectDevice"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_margin="@dimen/_10sdp"
+                                android:layout_toStartOf="@+id/relImageItemConnectDevice">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvDeviceNameTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:text="@string/device_name"
+                                    android:visibility="gone"
+                                    android:textColor="@color/gray"
+                                    android:textSize="@dimen/_8ssp" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tvDeviceNameItemConnectDevice"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/tvDeviceNameTitle"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_marginTop="@dimen/_1sdp"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:textColor="@color/blue"
+                                    android:textSize="@dimen/_12ssp" />
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/relImageItemConnectDevice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignTop="@+id/relDeviceNameItemConnectDevice"
+                                android:layout_alignBottom="@+id/relDeviceNameItemConnectDevice"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="@dimen/_10sdp">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/ivDeviceStatusItemConnectDevice"
+                                    android:layout_width="@dimen/_17sdp"
+                                    android:layout_height="@dimen/_17sdp"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/ic_selected_device" />
+                            </RelativeLayout>
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvChangeDevice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:onClick="@{(v)->settingVM.changeDevice(v)}"
+                            android:text="@string/change_device"
+                            android:textColor="@color/dark_orange"
+                            android:textSize="@dimen/_10ssp" />
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/tvChangeDevice"
+                            android:layout_alignStart="@+id/tvChangeDevice"
+                            android:layout_alignEnd="@+id/tvChangeDevice"
+                            android:layout_marginTop="@dimen/_minus5sdp"
+                            android:background="@color/dark_orange" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@color/sky_blue_transparent"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvErrorCodeSettings"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="@string/error_code_without_colon"
+                            android:textColor="@color/blue"
+                            android:textSize="@dimen/_12ssp" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@drawable/ic_bg_submit_error_code"
+                        android:onClick="@{(v)->settingVM.clickOnError(v)}">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/check_error_code"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12ssp" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

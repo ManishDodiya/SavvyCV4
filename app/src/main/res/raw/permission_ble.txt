@@ -1,0 +1,4 @@
+<p>This application uses Bluetooth.</p>
+<p>Please enable this feature in your device Settings menu.</p>
+<p>Press OK and you will be directed to your Settings menu.</p>
+<p>Once completed, you can re-launch this application.</p>

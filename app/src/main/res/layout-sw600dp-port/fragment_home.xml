@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.content.Context" />
+
+        <import type="com.savvytech.savvylevelfour.R" />
+
+        <import type="android.text.Html" />
+
+        <variable
+            name="homeFragmentViewModel"
+            type="com.savvytech.savvylevelfour.viewmodels.HomeFragmentViewModel" />
+
+        <variable
+            name="commonViewModel"
+            type="com.savvytech.savvylevelfour.viewmodels.CommonViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/sky_blue_transparent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/_65sdp"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/relHeaderHome"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:background="@drawable/header_shadow"
+                android:gravity="center_vertical"
+                android:paddingVertical="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clParentBattery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivBatteryIcon"
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_7sdp"
+                        android:layout_marginBottom="@dimen/_3sdp"
+                        android:src="@drawable/ic_battery"
+                        android:visibility="@{homeFragmentViewModel.txtFHBatteryStatus}"
+                        app:layout_constraintBottom_toBottomOf="@+id/txtFHBatteryStatus"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/txtFHBatteryStatus" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvDummy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:visibility="@{homeFragmentViewModel.txtFHBatteryStatus}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivBatteryIcon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!--                    <androidx.appcompat.widget.AppCompatTextView-->
+                    <!--                        android:id="@+id/txtFHBatteryStatus"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:fontFamily="@font/poppins_regular"-->
+                    <!--                        android:text="BATT: 0V"-->
+                    <!--                        android:textColor="@color/black"-->
+                    <!--                        android:textSize="@dimen/_9ssp"-->
+                    <!--                        android:visibility="@{homeFragmentViewModel.txtFHBatteryStatus}"-->
+                    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+                    <!--                        app:layout_constraintStart_toEndOf="@+id/tvDummy"-->
+                    <!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtFHBatteryStatusTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="@string/battery_label"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9ssp"
+                        android:visibility="@{homeFragmentViewModel.txtFHBatteryStatus}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tvDummy"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtFHBatteryStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="@string/zero_voltage"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9ssp"
+                        android:textStyle="bold"
+                        android:visibility="@{homeFragmentViewModel.txtFHBatteryStatus}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/txtFHBatteryStatusTitle"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivFHMainLogo"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_55sdp"
+                    android:src="@drawable/savvy_header_logo"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivBluetoothStrength"
+                    android:layout_width="@dimen/_17sdp"
+                    android:layout_height="@dimen/_17sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:src="@drawable/bluetooth_medium"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:src="@drawable/ic_bluetooth_connection_status"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivBluetoothStrength"
+                    app:layout_constraintEnd_toStartOf="@+id/ivBluetoothStrength"
+                    app:layout_constraintTop_toTopOf="@+id/ivBluetoothStrength" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <RelativeLayout
+                android:layout_width="0sp"
+                android:layout_height="0sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relHeaderHome">
+
+                <RelativeLayout
+                    android:id="@+id/relDegreeTopHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center_vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtFHRoll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center_vertical"
+                        android:text="0&#xb0;"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_17ssp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtFHBlockTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/blocks"
+                        android:textColor="@color/blue_0b4"
+                        android:textSize="@dimen/_13ssp"
+                        android:visibility="@{homeFragmentViewModel.txtFHBlockTitle}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvTiltHeightTop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/mms"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_17ssp"
+                        android:visibility="@{homeFragmentViewModel.tvTiltHeightTop}" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relTopHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/viewTopHome"
+                    android:layout_alignTop="@+id/relDegreeTopHome">
+
+                    <com.savvytech.savvylevelfour.common.TiltGauge
+                        android:id="@+id/viewRoundTop"
+                        setZoomInOut="@{commonViewModel.viewRoundTop}"
+                        android:layout_width="@dimen/_180sdp"
+                        android:layout_height="@dimen/_180sdp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        custom:gauge_type="right" />
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivTenXHome"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:src="@drawable/ten_x" />
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/viewTopHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
+                    android:background="@color/home_devider" />
+
+                <RelativeLayout
+                    android:id="@+id/relDegreeBottomHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_below="@+id/viewTopHome"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:gravity="center_vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtFHPitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center_vertical"
+                        android:text="0&#xb0;"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_17ssp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvTiltHeightBottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="@string/mms"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_17ssp"
+                        android:visibility="@{homeFragmentViewModel.tvTiltHeightBottom}" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relBottomHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/viewTopHome"
+                    android:layout_marginBottom="@dimen/_10sdp">
+
+                    <com.savvytech.savvylevelfour.common.TiltGauge
+                        android:id="@+id/viewRoundBottom"
+                        setZoomInOut="@{commonViewModel.viewRoundTop}"
+                        android:layout_width="@dimen/_180sdp"
+                        android:layout_height="@dimen/_180sdp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        custom:gauge_type="right" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relSetHitchHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginHorizontal="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:elevation="@dimen/_1sdp"
+                    android:visibility="visible">
+
+                    <RelativeLayout
+                        android:id="@+id/relFHLock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/clear_hitch_bg"
+                        android:gravity="center_vertical"
+                        android:onClick="@{(v)->homeFragmentViewModel.clickOnClearHitch(v)}"
+                        android:onLongClick="@{(v)->homeFragmentViewModel.clickOnLongClearHitch(v)}"
+                        android:paddingVertical="@dimen/_5sdp"
+                        android:visibility="@{homeFragmentViewModel.relFHLock,default=gone}">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivClearHitch"
+                            android:layout_width="@dimen/_13sdp"
+                            android:layout_height="@dimen/_13sdp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:src="@drawable/ic_hitch_locked"
+                            app:tint="@color/hitch_red" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/ivClearHitch"
+                            android:fontFamily="@font/poppins_medium"
+                            android:paddingHorizontal="@dimen/_5sdp"
+                            android:text="@string/clear_hitch"
+                            android:textColor="@color/hitch_red"
+                            android:textSize="@dimen/_10ssp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relSetHitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/set_hitch_bg"
+                        android:gravity="center_vertical"
+                        android:onClick="@{(v)->homeFragmentViewModel.clickOnSetHitch(v)}"
+                        android:onLongClick="@{()->homeFragmentViewModel.longClickOnSetHitch()}"
+                        android:paddingVertical="@dimen/_5sdp"
+                        android:tag="600dp"
+                        android:visibility="@{homeFragmentViewModel.relSetHitch, default = visible}">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivSetHitch"
+                            android:layout_width="@dimen/_13sdp"
+                            android:layout_height="@dimen/_13sdp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:src="@drawable/ic_set_hitch"
+                            app:tint="@color/white" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtFHHitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/ivSetHitch"
+                            android:fontFamily="@font/poppins_medium"
+                            android:paddingHorizontal="@dimen/_5sdp"
+                            android:text="@string/set_hitch"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10ssp" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--                android:id="@+id/clDetailsHome"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="0dp"-->
+            <!--                android:visibility="visible"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/relHeaderHome">-->
+
+            <!--                <RelativeLayout-->
+            <!--                    android:id="@+id/relDegreeTopHome"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="@dimen/_25sdp"-->
+            <!--                    android:layout_marginTop="@dimen/_10sdp"-->
+            <!--                    android:gravity="center_vertical"-->
+            <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                    app:layout_constraintStart_toStartOf="parent"-->
+            <!--                    app:layout_constraintTop_toTopOf="parent">-->
+
+            <!--                    <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                        android:id="@+id/txtFHRoll"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_alignParentStart="true"-->
+            <!--                        android:layout_marginStart="@dimen/_15sdp"-->
+            <!--                        android:fontFamily="@font/poppins_semibold"-->
+            <!--                        android:gravity="center_vertical"-->
+            <!--                        android:text="0&#xb0;"-->
+            <!--                        android:textColor="@color/black"-->
+            <!--                        android:textSize="@dimen/_17ssp" />-->
+
+            <!--                    <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                        android:id="@+id/txtFHBlockTitle"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_centerHorizontal="true"-->
+            <!--                        android:fontFamily="@font/poppins_semibold"-->
+            <!--                        android:text="@string/blocks"-->
+            <!--                        android:textColor="@color/blue_0b4"-->
+            <!--                        android:textSize="@dimen/_13ssp"-->
+            <!--                        android:visibility="@{homeFragmentViewModel.txtFHBlockTitle}" />-->
+
+            <!--                    <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                        android:id="@+id/tvTiltHeightTop"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_alignParentEnd="true"-->
+            <!--                        android:layout_marginEnd="@dimen/_15sdp"-->
+            <!--                        android:fontFamily="@font/poppins_semibold"-->
+            <!--                        android:text="@string/mms"-->
+            <!--                        android:textColor="@color/black"-->
+            <!--                        android:textSize="@dimen/_17ssp"-->
+            <!--                        android:visibility="@{homeFragmentViewModel.tvTiltHeightTop}" />-->
+            <!--                </RelativeLayout>-->
+
+            <!--                <RelativeLayout-->
+            <!--                    android:id="@+id/relTopHome"-->
+            <!--                    android:layout_width="0sp"-->
+            <!--                    android:layout_height="0sp"-->
+            <!--                    app:layout_constraintBottom_toTopOf="@+id/viewTopHome"-->
+            <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                    app:layout_constraintStart_toStartOf="parent"-->
+            <!--                    app:layout_constraintTop_toBottomOf="@+id/relDegreeTopHome">-->
+
+            <!--                    <com.savvycaravan.common.TiltGauge-->
+            <!--                        android:id="@+id/viewRoundTop"-->
+            <!--                        setZoomInOut="@{commonViewModel.viewRoundTop}"-->
+            <!--                        android:layout_width="@dimen/_180sdp"-->
+            <!--                        android:layout_height="@dimen/_180sdp"-->
+            <!--                        android:layout_centerInParent="true"-->
+            <!--                        android:layout_marginTop="@dimen/_10sdp"-->
+            <!--                        android:layout_marginBottom="@dimen/_10sdp"-->
+            <!--                        custom:gauge_type="right" />-->
+
+            <!--                    <androidx.appcompat.widget.AppCompatImageView-->
+            <!--                        android:id="@+id/ivTenXHome"-->
+            <!--                        android:layout_width="@dimen/_25sdp"-->
+            <!--                        android:layout_height="@dimen/_25sdp"-->
+            <!--                        android:layout_alignParentBottom="true"-->
+            <!--                        android:layout_marginStart="@dimen/_15sdp"-->
+            <!--                        android:layout_marginBottom="@dimen/_20sdp"-->
+            <!--                        android:src="@drawable/ten_x" />-->
+            <!--                </RelativeLayout>-->
+
+            <!--                <View-->
+            <!--                    android:id="@+id/viewTopHome"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="1dp"-->
+            <!--                    android:layout_marginHorizontal="@dimen/_15sdp"-->
+            <!--                    android:background="@color/home_devider"-->
+            <!--                    app:layout_constraintBottom_toTopOf="@+id/relDegreeBottomHome"-->
+            <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                    app:layout_constraintStart_toStartOf="parent"-->
+            <!--                    app:layout_constraintTop_toBottomOf="@+id/relTopHome" />-->
+
+            <!--                <RelativeLayout-->
+            <!--                    android:id="@+id/relDegreeBottomHome"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="@dimen/_25sdp"-->
+            <!--                    android:layout_marginTop="@dimen/_5sdp"-->
+            <!--                    android:gravity="center_vertical"-->
+            <!--                    app:layout_constraintBottom_toTopOf="@+id/relBottomHome"-->
+            <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                    app:layout_constraintStart_toStartOf="parent"-->
+            <!--                    app:layout_constraintTop_toBottomOf="@+id/viewTopHome">-->
+
+            <!--                    <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                        android:id="@+id/txtFHPitch"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_alignParentStart="true"-->
+            <!--                        android:layout_marginStart="@dimen/_15sdp"-->
+            <!--                        android:fontFamily="@font/poppins_semibold"-->
+            <!--                        android:gravity="center_vertical"-->
+            <!--                        android:text="0&#xb0;"-->
+            <!--                        android:textColor="@color/black"-->
+            <!--                        android:textSize="@dimen/_17ssp" />-->
+
+            <!--                    <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                        android:id="@+id/tvTiltHeightBottom"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_alignParentEnd="true"-->
+            <!--                        android:layout_marginEnd="@dimen/_15sdp"-->
+            <!--                        android:fontFamily="@font/poppins_semibold"-->
+            <!--                        android:text="@string/mms"-->
+            <!--                        android:textColor="@color/black"-->
+            <!--                        android:textSize="@dimen/_17ssp"-->
+            <!--                        android:visibility="@{homeFragmentViewModel.tvTiltHeightBottom}" />-->
+            <!--                </RelativeLayout>-->
+
+            <!--                <RelativeLayout-->
+            <!--                    android:id="@+id/relBottomHome"-->
+            <!--                    android:layout_width="0sp"-->
+            <!--                    android:layout_height="0sp"-->
+            <!--                    app:layout_constraintBottom_toTopOf="@+id/relSetHitchHome"-->
+            <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                    app:layout_constraintStart_toStartOf="parent"-->
+            <!--                    app:layout_constraintTop_toBottomOf="@+id/relDegreeBottomHome">-->
+
+            <!--                    <com.savvycaravan.common.TiltGauge-->
+            <!--                        android:id="@+id/viewRoundBottom"-->
+            <!--                        setZoomInOut="@{commonViewModel.viewRoundTop}"-->
+            <!--                        android:layout_width="@dimen/_180sdp"-->
+            <!--                        android:layout_height="@dimen/_180sdp"-->
+            <!--                        android:layout_centerInParent="true"-->
+            <!--                        android:layout_centerVertical="true"-->
+            <!--                        android:layout_marginBottom="@dimen/_20sdp"-->
+            <!--                        custom:gauge_type="right" />-->
+            <!--                </RelativeLayout>-->
+
+            <!--                <RelativeLayout-->
+            <!--                    android:id="@+id/relSetHitchHome"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginHorizontal="@dimen/_15sdp"-->
+            <!--                    android:layout_marginTop="@dimen/_minus10sdp"-->
+            <!--                    android:visibility="visible"-->
+            <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                    app:layout_constraintStart_toStartOf="parent"-->
+            <!--                    app:layout_constraintTop_toBottomOf="@+id/relBottomHome">-->
+
+            <!--                    <RelativeLayout-->
+            <!--                        android:id="@+id/relFHLock"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:background="@drawable/clear_hitch_bg"-->
+            <!--                        android:gravity="center_vertical"-->
+            <!--                        android:onClick="@{(v)->homeFragmentViewModel.clickOnClearHitch(v)}"-->
+            <!--                        android:onLongClick="@{(v)->homeFragmentViewModel.clickOnLongClearHitch(v)}"-->
+            <!--                        android:paddingVertical="@dimen/_5sdp"-->
+            <!--                        android:visibility="@{homeFragmentViewModel.relFHLock,default=gone}">-->
+
+            <!--                        <androidx.appcompat.widget.AppCompatImageView-->
+            <!--                            android:id="@+id/ivClearHitch"-->
+            <!--                            android:layout_width="@dimen/_13sdp"-->
+            <!--                            android:layout_height="@dimen/_13sdp"-->
+            <!--                            android:layout_marginStart="@dimen/_10sdp"-->
+            <!--                            android:src="@drawable/ic_hitch_locked"-->
+            <!--                            app:tint="@color/hitch_red" />-->
+
+            <!--                        <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                            android:layout_width="wrap_content"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_toEndOf="@+id/ivClearHitch"-->
+            <!--                            android:fontFamily="@font/poppins_medium"-->
+            <!--                            android:paddingHorizontal="@dimen/_10sdp"-->
+            <!--                            android:text="@string/clear_hitch"-->
+            <!--                            android:textColor="@color/hitch_red"-->
+            <!--                            android:textSize="@dimen/_10ssp" />-->
+            <!--                    </RelativeLayout>-->
+
+            <!--                    <RelativeLayout-->
+            <!--                        android:id="@+id/relSetHitch"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_centerVertical="true"-->
+            <!--                        android:background="@drawable/set_hitch_bg"-->
+            <!--                        android:gravity="center_vertical"-->
+            <!--                        android:onClick="@{(v)->homeFragmentViewModel.clickOnSetHitch(v)}"-->
+            <!--                        android:onLongClick="@{()->homeFragmentViewModel.longClickOnSetHitch()}"-->
+            <!--                        android:paddingVertical="@dimen/_5sdp"-->
+            <!--                        android:visibility="@{homeFragmentViewModel.relSetHitch, default = gone}">-->
+
+            <!--                        <androidx.appcompat.widget.AppCompatImageView-->
+            <!--                            android:id="@+id/ivSetHitch"-->
+            <!--                            android:layout_width="@dimen/_13sdp"-->
+            <!--                            android:layout_height="@dimen/_13sdp"-->
+            <!--                            android:layout_centerVertical="true"-->
+            <!--                            android:layout_marginStart="@dimen/_10sdp"-->
+            <!--                            android:src="@drawable/ic_set_hitch"-->
+            <!--                            app:tint="@color/white" />-->
+
+            <!--                        <androidx.appcompat.widget.AppCompatTextView-->
+            <!--                            android:id="@+id/txtFHHitch"-->
+            <!--                            android:layout_width="wrap_content"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_centerVertical="true"-->
+            <!--                            android:layout_toEndOf="@+id/ivSetHitch"-->
+            <!--                            android:fontFamily="@font/poppins_medium"-->
+            <!--                            android:paddingHorizontal="@dimen/_10sdp"-->
+            <!--                            android:text="@string/set_hitch"-->
+            <!--                            android:textColor="@color/white"-->
+            <!--                            android:textSize="@dimen/_10ssp" />-->
+            <!--                    </RelativeLayout>-->
+            <!--                </RelativeLayout>-->
+            <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+            <LinearLayout
+                android:id="@+id/lnrFHNoDataFound"
+                android:layout_width="match_parent"
+                android:layout_height="0sp"
+                android:alpha="1"
+                android:background="@color/sky_blue_transparent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relHeaderHome">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_12sdp"
+                    android:text="@string/noDataFoundFromDevice"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_20sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="@dimen/_12sdp"
+                    android:text="@{homeFragmentViewModel.spannableString}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15sdp" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
